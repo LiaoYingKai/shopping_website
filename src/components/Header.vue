@@ -33,7 +33,9 @@
 
     <div class="shoppingCart">
       <router-link :to="{ name: 'shoppingCart', params: {} }">
-        <font-awesome-icon icon="shopping-cart" />
+        <el-badge :value="shoppingCartQuantity" class="item">
+          <font-awesome-icon icon="shopping-cart" />
+        </el-badge>
       </router-link>
     </div>
   </div>
@@ -49,15 +51,16 @@ export default {
     }
   },
   methods: {
-    shoppingView: function() {
-      console.log("fuck")
-      console.log(this.$store.getters.getShoppingCart)
-    },
     searchProduct: function() {
       console.log(this.text)
       this.text = ""
     }
   },
+  computed: {
+    shoppingCartQuantity: function() {
+      return this.$store.getters.getShoppingCart.length
+    }
+  }
 
 }
 </script>

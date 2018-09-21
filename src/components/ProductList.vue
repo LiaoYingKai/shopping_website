@@ -64,7 +64,7 @@ export default {
     justify-content: center;
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 87vh;
+    height: 82vh;
 }
 .productList {
     width: 1024px;

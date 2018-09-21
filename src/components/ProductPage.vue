@@ -10,11 +10,16 @@
         {{item.describe}}
       </div>
       <div class="checkoutGroup">
-        <span>價格：{{item.price}}</span>
+        <span v-if="isOnSale(item.originPrice,item.price)">價格：{{item.originPrice}}</span>
+        <span v-else>價格：{{item.price}}</span>
         <el-input-number v-model="num" :min="1" size="medium"></el-input-number>
+        小計：{{item.price*num}}
         <font-awesome-icon icon="shopping-cart" @click="addShoppingCart(item.picB,item.name,item.price,num)" />
       </div>
     </div>
+  </div>
+  <div class="youMayNeed">
+    <!-- {{moreProduct}} -->
   </div>
 </div>
 </template>
@@ -40,6 +45,10 @@ export default {
     product: function() {
       return this.$store.getters.getData.filter(item => item.Id === this.productId)
     },
+    moreProduct: function() {
+      return this.$store.getters.getNeedData()
+    }
+
   },
   methods: {
     addShoppingCart: function(image, name, price, number) {
@@ -71,6 +80,9 @@ export default {
         duratoin: 1000
       })
     },
+    isOnSale: function(originPrice, price) {
+      return originPrice < price
+    }
   }
 }
 </script>
@@ -100,7 +112,8 @@ export default {
     }
     .checkoutGroup {
         margin-top: 15px;
-        text-align: center;
+        display: flex;
+        justify-content: space-between;
         span {
             margin-right: 20px;
             font-size: 28px;
