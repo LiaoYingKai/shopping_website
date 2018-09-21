@@ -8,7 +8,9 @@ import {
   library
 } from '@fortawesome/fontawesome-svg-core'
 import {
-  faShoppingCart
+  faShoppingCart,
+  faTimes,
+  faPen
 } from '@fortawesome/free-solid-svg-icons'
 import {
   FontAwesomeIcon
@@ -18,7 +20,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(ElementUI);
 
-library.add(faShoppingCart)
+library.add(faShoppingCart, faTimes, faPen)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

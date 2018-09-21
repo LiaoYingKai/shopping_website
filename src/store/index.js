@@ -4,7 +4,7 @@ import axios from 'axios'
 Vue.use(Vuex)
 const state = {
   data: [],
-  shoppingCart: []
+  shoppingCart: [],
 }
 const getters = {
   getData(state) {
@@ -15,8 +15,8 @@ const getters = {
   },
 }
 const actions = {
-  getApi(context, product) {
-    axios.get(`https://cors-anywhere.herokuapp.com/https://ecshweb.pchome.com.tw/search/v3.3/all/results?page=1&q=${product}&sort=rnk/dc`)
+  getApi(context, product, number) {
+    axios.get(`https://cors-anywhere.herokuapp.com/https://ecshweb.pchome.com.tw/search/v3.3/all/results?page=${number}&q=${product}&sort=rnk/dc`)
       .then(respone => {
         let data = respone.data.prods
         context.commit('setData', data)
@@ -24,17 +24,32 @@ const actions = {
       .catch(error => {
         console.log(error)
       })
+  },
+  moreProduct(context, product) {
+
   }
 }
 const mutations = {
   setData(state, apiData) {
-    state.data = [...apiData]
-    state.data.forEach(item => {
+    apiData.forEach(item => {
       item.number = 1
+      state.data.push(item)
+    })
+  },
+  moreData(state, apiData) {
+    apiData.forEach(item => {
+      item.number = 1
+      state.data.push(item)
     })
   },
   setShoppingCart(state, data) {
     state.shoppingCart.push(data)
+  },
+  resetData(state) {
+    state.data = []
+  },
+  deleteShoppingCartOrder(state, index) {
+    state.shoppingCart.splice(index, index + 1)
   }
 }
 export default new Vuex.Store({

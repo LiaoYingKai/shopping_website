@@ -32,6 +32,10 @@ export default {
   components: {
     SliderBar,
   },
+  beforeRouteLeave(to, from, next) {
+    this.$store.commit('resetData')
+    next()
+  },
 }
 </script>
 

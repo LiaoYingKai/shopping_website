@@ -10,8 +10,9 @@
         {{item.describe}}
       </div>
       <div class="checkoutGroup">
+        <span>價格：{{item.price}}</span>
         <el-input-number v-model="num" :min="1" size="medium"></el-input-number>
-        <font-awesome-icon icon="shopping-cart" @click="addShoppingCart(item.name,item.price,num)" />
+        <font-awesome-icon icon="shopping-cart" @click="addShoppingCart(item.picB,item.name,item.price,num)" />
       </div>
     </div>
   </div>
@@ -24,7 +25,7 @@ export default {
     return {
       text: this.$route.params.name,
       productId: this.$route.params.productId,
-      num: 1
+      num: 1,
     }
   },
   mounted: function() {
@@ -32,21 +33,26 @@ export default {
       this.$store.dispatch('getApi', this.text)
     }
   },
+  create: function() {
+    this.addScrollEvent()
+  },
   computed: {
     product: function() {
       return this.$store.getters.getData.filter(item => item.Id === this.productId)
-    }
+    },
   },
   methods: {
-    addShoppingCart: function(name, price, number) {
+    addShoppingCart: function(image, name, price, number) {
       if (number <= 0) {
         this.warnAdd()
         return
       } else {
         this.$store.commit("setShoppingCart", {
+          image: image,
           name: name,
           price: price,
-          number: number
+          number: number,
+          isEdit: false
         })
         this.num = 1
         this.successAdd()
@@ -95,6 +101,12 @@ export default {
     .checkoutGroup {
         margin-top: 15px;
         text-align: center;
+        span {
+            margin-right: 20px;
+            font-size: 28px;
+            color: red;
+            line-height: 1;
+        }
         svg {
             margin-left: 10px;
             color: red;

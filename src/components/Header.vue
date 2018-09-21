@@ -13,9 +13,9 @@
     </ul>
   </div>
   <div class="mallBar">
-    <div class="logo">
+    <router-link :to="{ name: 'Home', params: {} }" class="logo">
       FuckingKai
-    </div>
+    </router-link>
     <div class="">
       <div class="filterBar">
         <input type="text" v-model="text" @keyup.enter="searchProduct">
@@ -32,7 +32,9 @@
     </div>
 
     <div class="shoppingCart">
-      <font-awesome-icon icon="shopping-cart" @click="shoppingView" />
+      <router-link :to="{ name: 'shoppingCart', params: {} }">
+        <font-awesome-icon icon="shopping-cart" />
+      </router-link>
     </div>
   </div>
 </div>
@@ -102,6 +104,7 @@ export default {
     font-size: 48px;
     color: #fff;
     line-height: 1.3;
+    text-decoration: none;
 }
 .filterBar {
     padding: 5px 10px;

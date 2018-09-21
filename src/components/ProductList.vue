@@ -1,43 +1,73 @@
 <template>
-<div class="productList">
-  <div class="productArrangement">
-    <div class="productShow" v-for="item in product">
-      <router-link :to="`/Home/${text}/${item.Id}`">
-        <div class="title">
-          {{item.name}}
-        </div>
-        <img :src="`https://f.ecimg.tw${item.picB}`" alt="">
-        <div class="price">
-          <span>價格：</span>{{item.price}}
-        </div>
-      </router-link>
+<div class="scrollContent" @scroll="isBottom">
+  <div class="" v-if="loading" v-loading="loading">
+    <!-- 加載中 -->
+  </div>
+  <div class="productList" v-else>
+    <div class="productArrangement">
+      <div class="productShow" v-for="item in product">
+        <router-link :to="`/Home/${text}/${item.Id}`">
+          <div class="title">
+            {{item.name}}
+          </div>
+          <img :src="`https://f.ecimg.tw${item.picB}`" alt="">
+          <div class="price">
+            <span>價格：</span>{{item.price}}
+          </div>
+        </router-link>
+      </div>
     </div>
   </div>
 </div>
 </template>
 
 <script>
+import $ from 'jquery'
 export default {
   data() {
     return {
       text: this.$route.params.name,
+      number: 1,
     }
   },
   mounted: function() {
-    this.$store.dispatch('getApi', this.text)
+    if (this.$store.getters.getData.length === 0) {
+      this.$store.dispatch('getApi', this.text)
+    }
   },
   computed: {
     product: function() {
       return this.$store.getters.getData
+    },
+    loading: function() {
+      return this.$store.getters.getData.length === 0
     }
   },
+  methods: {
+    isBottom: function() {
+      let pageHeight = $(".scrollContent").height();
+      let scrollTop = $(".scrollContent").scrollTop();
+      let scrollHeight = $(".scrollContent").prop('scrollHeight')
+      if (Math.ceil((pageHeight + scrollTop)) === scrollHeight) {
+        this.number++;
+        this.$store.dispatch('getApi', this.text, this.number)
+      }
+    },
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 @import "mixin";
+.scrollContent {
+    display: flex;
+    justify-content: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 87vh;
+}
 .productList {
-    @include containerCenter;
+    width: 1024px;
 }
 .productArrangement {
     margin-top: 10px;

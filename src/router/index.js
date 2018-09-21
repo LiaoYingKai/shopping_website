@@ -5,6 +5,7 @@ import Home from '@/components/Home'
 import HomeContent from '@/components/HomeContent'
 import ProductList from '@/components/ProductList'
 import ProductPage from '@/components/ProductPage'
+import ShoppingCartPage from '@/components/ShoppingCartPage'
 
 Vue.use(Router)
 
@@ -21,10 +22,13 @@ export default new Router({
     }, {
       path: 'Home/:name',
       component: ProductList,
-
     }, {
       path: 'Home/:name/:productId',
       component: ProductPage
+    }, {
+      path: 'ShoppingCart',
+      name: 'shoppingCart',
+      component: ShoppingCartPage
     }]
   }, ]
 })

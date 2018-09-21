@@ -1,17 +1,13 @@
 <template>
 <div id="app">
-  <!-- <Header/> -->
   <router-view/>
 </div>
 </template>
 
 <script>
-import Header from '@/components/Header'
 export default {
   name: 'App',
-  components: {
-    Header
-  }
+  components: {}
 }
 </script>
 
@@ -22,10 +18,9 @@ body {
   background-color: #f2f2f2;
 }
 
-/* 
 body::-webkit-scrollbar {
   display: none;
-} */
+}
 
 #app {
   font-family: sans-serif;
