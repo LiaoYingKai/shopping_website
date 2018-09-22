@@ -10,13 +10,6 @@ const getters = {
   getData(state) {
     return state.data
   },
-  getNeedData(state, index) {
-    let moreDataArray = []
-    for (let i = 0; i < 5; i++) {
-      moreDataArray.push(state.data[index + i])
-    }
-    return moreDataArray
-  },
   getShoppingCart(state) {
     return state.shoppingCart
   },

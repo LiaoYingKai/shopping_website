@@ -85,6 +85,9 @@ export default {
     isOnSale: function(originPrice, price) {
       return originPrice < price
     },
+    getUserMaybeNeed: function() {
+      this.$store.getters.getUserMaybeNeed
+    }
   }
 }
 </script>
@@ -96,6 +99,7 @@ export default {
 }
 .productStyle {
     margin-top: 10px;
+    margin-bottom: 50px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
