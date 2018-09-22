@@ -25,8 +25,6 @@ const actions = {
   getApi(context, productInfo) {
     axios.get(`https://cors-anywhere.herokuapp.com/https://ecshweb.pchome.com.tw/search/v3.3/all/results?page=${productInfo.number}&q=${productInfo.product}&sort=rnk/dc`)
       .then(respone => {
-        console.log(productInfo.product)
-        console.log(productInfo.number)
         let apiData = respone.data.prods
         context.commit('setData', apiData)
       })

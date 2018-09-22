@@ -7,7 +7,7 @@
         {{item.name}}
       </div>
       <div class="describe">
-        {{item.describe}}
+        <pre>{{item.describe}}</pre>
       </div>
       <div class="checkoutGroup">
         <span v-if="isOnSale(item.originPrice,item.price)">價格：{{item.originPrice}}</span>
@@ -35,7 +35,10 @@ export default {
   },
   mounted: function() {
     if (this.$store.getters.getData.length === 0) {
-      this.$store.dispatch('getApi', this.text)
+      this.$store.dispatch('getApi', {
+        product: this.text,
+        number: this.number
+      })
     }
   },
   create: function() {
@@ -47,8 +50,7 @@ export default {
     },
     moreProduct: function() {
       return this.$store.getters.getNeedData()
-    }
-
+    },
   },
   methods: {
     addShoppingCart: function(image, name, price, number) {
@@ -82,7 +84,7 @@ export default {
     },
     isOnSale: function(originPrice, price) {
       return originPrice < price
-    }
+    },
   }
 }
 </script>
@@ -109,6 +111,10 @@ export default {
     }
     .describe {
         margin-top: 15px;
+        pre {
+            white-space: pre-wrap;
+            word-break: normal;
+        }
     }
     .checkoutGroup {
         margin-top: 15px;

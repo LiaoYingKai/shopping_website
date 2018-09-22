@@ -51,7 +51,6 @@ export default {
       let scrollTop = $(".scrollContent").scrollTop();
       let scrollHeight = $(".scrollContent").prop('scrollHeight')
       if (Math.ceil((pageHeight + scrollTop)) === scrollHeight) {
-        // console.log(this.number)
         this.number++;
         this.$store.dispatch('getApi', {
           product: this.text,
@@ -90,6 +89,7 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     .title {
+        font-weight: bold;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
