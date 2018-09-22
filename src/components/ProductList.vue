@@ -1,7 +1,6 @@
 <template>
 <div class="scrollContent" @scroll="isBottom">
   <div class="" v-if="loading" v-loading="loading">
-    <!-- 加載中 -->
   </div>
   <div class="productList" v-else>
     <div class="productArrangement">
@@ -32,7 +31,10 @@ export default {
   },
   mounted: function() {
     if (this.$store.getters.getData.length === 0) {
-      this.$store.dispatch('getApi', this.text)
+      this.$store.dispatch('getApi', {
+        product: this.text,
+        number: this.number
+      })
     }
   },
   computed: {
@@ -49,9 +51,12 @@ export default {
       let scrollTop = $(".scrollContent").scrollTop();
       let scrollHeight = $(".scrollContent").prop('scrollHeight')
       if (Math.ceil((pageHeight + scrollTop)) === scrollHeight) {
-        console.log(this.number)
+        // console.log(this.number)
         this.number++;
-        this.$store.dispatch('getApi', this.text, this.number)
+        this.$store.dispatch('getApi', {
+          product: this.text,
+          number: this.number
+        })
       }
     },
   }

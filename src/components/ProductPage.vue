@@ -18,7 +18,7 @@
       </div>
     </div>
   </div>
-  <div class="youMayNeed">
+  <div class="userMaybeNeed">
     <!-- {{moreProduct}} -->
   </div>
 </div>
