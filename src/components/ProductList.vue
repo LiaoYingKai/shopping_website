@@ -49,6 +49,7 @@ export default {
       let scrollTop = $(".scrollContent").scrollTop();
       let scrollHeight = $(".scrollContent").prop('scrollHeight')
       if (Math.ceil((pageHeight + scrollTop)) === scrollHeight) {
+        console.log(this.number)
         this.number++;
         this.$store.dispatch('getApi', this.text, this.number)
       }
