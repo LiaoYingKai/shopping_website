@@ -8,8 +8,8 @@
     </ul>
     <ul>
       <li>幫助</li>
-      <li>註冊</li>
-      <li>登錄</li>
+      <li @click="goRegister">註冊</li>
+      <li @click="goLogin">登入</li>
     </ul>
   </div>
   <div class="mallBar">
@@ -54,6 +54,12 @@ export default {
     searchProduct: function() {
       console.log(this.text)
       this.text = ""
+    },
+    goLogin: function() {
+      this.$store.commit("changeLoginState")
+    },
+    goRegister: function() {
+      this.$store.commit('changeRegisteredState')
     }
   },
   computed: {
@@ -61,7 +67,6 @@ export default {
       return this.$store.getters.getShoppingCart.length
     }
   }
-
 }
 </script>
 
@@ -86,12 +91,17 @@ export default {
             margin: 10px 0;
             padding: 0 15px;
             border-left: 1px solid #fff;
+            cursor: pointer;
             &:first-child {
                 border-left: 0;
                 padding-left: 0;
             }
             &:last-child {
                 padding-right: 0;
+            }
+            a {
+                text-decoration: none;
+                color: #fff;
             }
         }
     }

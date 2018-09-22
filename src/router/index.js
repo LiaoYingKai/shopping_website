@@ -7,6 +7,7 @@ import ProductList from '@/components/ProductList'
 import ProductPage from '@/components/ProductPage'
 import ShoppingCartPage from '@/components/ShoppingCartPage'
 
+
 Vue.use(Router)
 
 export default new Router({
@@ -29,6 +30,6 @@ export default new Router({
       path: 'ShoppingCart',
       name: 'shoppingCart',
       component: ShoppingCartPage
-    }]
+    }, ]
   }, ]
 })

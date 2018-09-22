@@ -17,11 +17,11 @@ import {
 } from '@fortawesome/vue-fontawesome'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import VueLocalStorage from 'vue-localstorage'
 
+Vue.use(VueLocalStorage)
 Vue.use(ElementUI);
-
 library.add(faShoppingCart, faTimes, faPen)
-
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false

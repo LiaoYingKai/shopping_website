@@ -5,6 +5,8 @@ Vue.use(Vuex)
 const state = {
   data: [],
   shoppingCart: [],
+  loginPage: false,
+  registeredPage: false
 }
 const getters = {
   getData(state) {
@@ -13,6 +15,12 @@ const getters = {
   getShoppingCart(state) {
     return state.shoppingCart
   },
+  getIsLogin(state) {
+    return state.loginPage
+  },
+  getIsRegistered(state) {
+    return state.registeredPage
+  }
 }
 const actions = {
   getApi(context, productInfo) {
@@ -50,6 +58,12 @@ const mutations = {
   },
   deleteShoppingCartOrder(state, index) {
     state.shoppingCart.splice(index, index + 1)
+  },
+  changeLoginState(state) {
+    state.loginPage = !state.loginPage
+  },
+  changeRegisteredState(state) {
+    state.registeredPage = !state.registeredPage
   }
 }
 export default new Vuex.Store({

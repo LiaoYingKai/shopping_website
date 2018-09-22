@@ -2,3 +2,19 @@
   width: 1024px;
   margin: 0 auto;
 }
+@mixin buttonStyle($bgColor,$fontColor,$hoverbgColor) {
+  line-height: 14px;
+  font-size: 14px;
+  box-sizing: content-box;
+  width: 140px;
+  background-color: $bgColor;
+  padding: 12px 0;
+  font-weight: 500;
+  color: $fontColor;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $hoverbgColor;
+  }
+}
