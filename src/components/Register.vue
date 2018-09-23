@@ -61,10 +61,10 @@ export default {
       this.password = ''
       this.againPassword = ''
       this.confirmPassword = true
-      this.registerSuccess()
+      this.registeredSuccess()
       this.cancelRegistered()
     },
-    registerSuccess: function() {
+    registeredSuccess: function() {
       this.$notify({
         title: '註冊成功',
         type: 'success',
