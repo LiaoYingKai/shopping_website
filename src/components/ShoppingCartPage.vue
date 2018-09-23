@@ -57,6 +57,7 @@ export default {
 @import "mixin";
 .shoppingCartPage {
     @include containerCenter;
+    margin-bottom: 50px;
 }
 ul {
     list-style: none;

@@ -5,17 +5,17 @@
       登入 <span>註冊</span>
     </div>
     <div class="account">
-      <input type="text" placeholder="帳號">
+      <input type="text" placeholder="帳號" v-model="account">
     </div>
     <div class="password">
-      <input type="password" placeholder="密碼">
+      <input type="password" placeholder="密碼" v-model="password">
     </div>
     <div class="userHelp">
       忘記密碼？
     </div>
     <div class="buttonGrop">
       <button type="button" class="cancel" @click="cancelLogin">取消</button>
-      <button type="button" class="sure" @click="cancelLogin">確定</button>
+      <button type="button" class="sure" @click="inputLogin">確定</button>
 
     </div>
   </div>
@@ -24,9 +24,25 @@
 
 <script>
 export default {
+  data() {
+    return {
+      account: '',
+      password: ''
+    }
+  },
   methods: {
     cancelLogin: function() {
       this.$store.commit('changeLoginState')
+    },
+    inputLogin: function() {
+      let userArray = this.$store.getters.loginState
+      let user = userArray.filter(item => {
+        if ((item.account === this.account) && (item.password === this.password)) {
+          return item
+        }
+      })
+      console.log(user)
+      this.cancelLogin()
     }
   }
 }

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 Vue.use(Vuex)
+
 const state = {
   data: [],
   shoppingCart: [],
@@ -20,6 +21,9 @@ const getters = {
   },
   getIsRegistered(state) {
     return state.registeredPage
+  },
+  loginState(state) {
+    return JSON.parse(localStorage.getItem('userInfo'))
   }
 }
 const actions = {
@@ -64,7 +68,13 @@ const mutations = {
   },
   changeRegisteredState(state) {
     state.registeredPage = !state.registeredPage
+  },
+  registerUser(state, userInfo) {
+    let userArray = JSON.parse(localStorage.getItem('userInfo')) || []
+    userArray.push(userInfo)
+    localStorage.setItem('userInfo', JSON.stringify(userArray))
   }
+
 }
 export default new Vuex.Store({
   state,
