@@ -2,7 +2,7 @@
 <div class="login">
   <div class="content">
     <div class="title">
-      登入 <span>註冊</span>
+      登入 <span @click="goRegistered">註冊</span>
     </div>
     <div class="account">
       <input type="text" placeholder="帳號" v-model="account">
@@ -56,6 +56,10 @@ export default {
       this.$store.commit('changeUser')
       this.$store.commit('aboutUser', userArray)
       this.cancelLogin()
+    },
+    goRegistered: function() {
+      this.$store.commit('changeLoginState')
+      this.$store.commit('changeRegisteredState')
     }
   }
 }

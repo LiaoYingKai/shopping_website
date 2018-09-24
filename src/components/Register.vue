@@ -2,7 +2,7 @@
 <div class="login">
   <div class="content">
     <div class="title">
-      註冊 <span>登入</span>
+      註冊 <span @click="goLogin">登入</span>
     </div>
     <div class="account">
       <input type="text" placeholder="帳號" v-model="account">
@@ -84,6 +84,10 @@ export default {
         duration: 1000
       })
     },
+    goLogin: function() {
+      this.$store.commit('changeLoginState')
+      this.$store.commit('changeRegisteredState')
+    }
   }
 }
 </script>
