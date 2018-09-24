@@ -24,6 +24,7 @@
   </ul>
   <div class="totalPrice">
     合計：{{totalPrice()}}
+    <button type="button" @click="checkout">結帳</button>
   </div>
 </div>
 </template>
@@ -48,6 +49,13 @@ export default {
         price += item.price * item.number
       })
       return price
+    },
+    checkout: function() {
+      if (this.$store.getters.loginState) {
+        console.log('付錢啦幹')
+      } else {
+        this.$store.commit('changeLoginState')
+      }
     }
   }
 }
@@ -98,5 +106,8 @@ ul {
     text-align: right;
     font-size: 24px;
     color: red;
+}
+button {
+    @include buttonStyle(#ff5722,#fff,#ff6736) margin-left: 15px;
 }
 </style>
