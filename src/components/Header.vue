@@ -12,7 +12,6 @@
       <li v-else @click="goRegister">註冊</li>
       <li v-if="isLogin" @click="loginOut">登出</li>
       <li v-else @click="goLogin">登入</li>
-
     </ul>
   </div>
   <div class="mallBar">
@@ -22,8 +21,9 @@
     <div class="">
       <div class="filterBar">
         <input type="text" v-model="text" @keyup.enter="searchProduct">
-        <button type="button">搜尋</button>
-
+        <router-link :to="`/Home/${text}`">
+          <button type="button">搜尋</button>
+        </router-link>
       </div>
       <div class="hotSearchBar">
         <ul>
@@ -55,8 +55,9 @@ export default {
   },
   methods: {
     searchProduct: function() {
-      console.log(this.text)
-      this.text = ""
+      // this.$router.replace(`Home/${this.text}`)
+      // console.log(this.text)
+      // this.text = ""
     },
     goLogin: function() {
       this.$store.commit("changeLoginState")
@@ -78,7 +79,8 @@ export default {
     user: function() {
       return this.$store.getters.getWhichUser[0].userName
     }
-  }
+  },
+
 }
 </script>
 

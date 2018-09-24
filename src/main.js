@@ -17,8 +17,10 @@ import {
 } from '@fortawesome/vue-fontawesome'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import VueLocalStorage from 'vue-localstorage'
+import VueLocalStorage from 'vue-localstorage';
+import VueLocation from 'vue-location'
 
+Vue.use(VueLocation);
 Vue.use(VueLocalStorage)
 Vue.use(ElementUI);
 library.add(faShoppingCart, faTimes, faPen)
