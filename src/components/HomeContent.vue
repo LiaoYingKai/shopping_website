@@ -26,7 +26,7 @@ import SliderBar from '@/components/SliderBar'
 export default {
   data() {
     return {
-      productList: ["apple", "asus", "htc", "化妝品", "男生用品", "生活用品", "3C產品", "女生用品"]
+      productList: ["apple", "asus", "htc", "化妝品", "男生用品", "生活用品", "3C產品", "女生用品", "運動用品", ]
     }
   },
   components: {
@@ -57,6 +57,7 @@ export default {
         padding: 0;
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-between;
         li {
             background-color: #fff;
             border-radius: 2px;
