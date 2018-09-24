@@ -8,8 +8,11 @@
     </ul>
     <ul>
       <li>幫助</li>
-      <li @click="goRegister">註冊</li>
-      <li @click="goLogin">登入</li>
+      <li v-if="isLogin">{{user}}</li>
+      <li v-else @click="goRegister">註冊</li>
+      <li v-if="isLogin" @click="loginOut">登出</li>
+      <li v-else @click="goLogin">登入</li>
+
     </ul>
   </div>
   <div class="mallBar">
@@ -60,11 +63,20 @@ export default {
     },
     goRegister: function() {
       this.$store.commit('changeRegisteredState')
+    },
+    loginOut: function() {
+      this.$store.commit('changeUser')
     }
   },
   computed: {
     shoppingCartQuantity: function() {
       return this.$store.getters.getShoppingCart.length
+    },
+    isLogin: function() {
+      return this.$store.getters.loginState
+    },
+    user: function() {
+      return this.$store.getters.getWhichUser[0].userName
     }
   }
 }
@@ -91,6 +103,7 @@ export default {
             margin: 10px 0;
             padding: 0 15px;
             border-left: 1px solid #fff;
+            line-height: 24px;
             cursor: pointer;
             &:first-child {
                 border-left: 0;

@@ -15,6 +15,10 @@
       <input type="password" placeholder="確認密碼" v-model="againPassword">
       <p :class='{isHidden:confirmPassword}'>密碼輸入錯誤</p>
     </div>
+    <div class="userName">
+      <input type="text" placeholder="輸入使用者暱稱" v-model="userName">
+      <p :class='{isHidden:isUserName}'>輸入暱稱</p>
+    </div>
     <div class="buttonGrop">
       <button type="button" class="cancel" @click="cancelRegistered">取消</button>
       <button type="button" class="sure" @click="addUserInfo">註冊</button>
@@ -31,8 +35,10 @@ export default {
       account: '',
       password: '',
       againPassword: '',
+      userName: '',
       confirmPassword: true,
-      confirmAccount: true
+      confirmAccount: true,
+      isUserName: true
     }
   },
   methods: {
@@ -53,14 +59,21 @@ export default {
         this.confirmPassword = false
         return
       }
-      this.$store.commit('registerUser', {
+      this.confirmPassword = true
+      if (!this.userName) {
+        this.isUserName = false
+        return
+      }
+      this.isUserName = true
+      this.$store.commit('registeredUser', {
         account: this.account,
-        password: this.password
+        password: this.password,
+        userName: this.userName
       })
       this.account = ''
       this.password = ''
       this.againPassword = ''
-      this.confirmPassword = true
+      this.userName = ''
       this.registeredSuccess()
       this.cancelRegistered()
     },

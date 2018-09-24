@@ -5,7 +5,7 @@
       作者：Kai
     </div>
     <div class="technology">
-      使用技術：Html css javaScript jQuery Vue-cli vuex
+      使用技術：HTML CSS JavaScript jQuery Vue-cli vuex
     </div>
     <div class="callMe">
       聯絡我：b10223052@yuntech.org.tw

@@ -6,9 +6,11 @@
     </div>
     <div class="account">
       <input type="text" placeholder="帳號" v-model="account">
+      <p :class='{isHidden:confirmAccount}'>查無此帳號</p>
     </div>
     <div class="password">
       <input type="password" placeholder="密碼" v-model="password">
+      <p :class='{isHidden:confirmPassword}'>密碼錯誤</p>
     </div>
     <div class="userHelp">
       忘記密碼？
@@ -27,7 +29,10 @@ export default {
   data() {
     return {
       account: '',
-      password: ''
+      password: '',
+      confirmAccount: true,
+      confirmPassword: true
+
     }
   },
   methods: {
@@ -35,13 +40,21 @@ export default {
       this.$store.commit('changeLoginState')
     },
     inputLogin: function() {
-      let userArray = this.$store.getters.loginState
-      let user = userArray.filter(item => {
-        if ((item.account === this.account) && (item.password === this.password)) {
-          return item
-        }
-      })
-      console.log(user)
+      let userArray = this.$store.getters.getUserInfo(this.account)
+      if (userArray === null) {
+        this.confirmAccount = false
+        return
+      }
+      this.confirmAccount = true
+      if (userArray[0].password == this.password) {
+        console.log('login successful')
+      } else {
+        this.confirmPassword = false
+        return
+      }
+      this.confirmPassword = true
+      this.$store.commit('changeUser')
+      this.$store.commit('aboutUser', userArray)
       this.cancelLogin()
     }
   }
@@ -70,6 +83,11 @@ export default {
     background-color: #fff;
     padding: 30px;
     box-sizing: border-box;
+}
+p {
+    margin: 0;
+    font-size: 16px;
+    color: #ff5722;
 }
 .title {
     display: flex;
@@ -106,5 +124,8 @@ input {
     .cancel {
         @include buttonStyle(#fff,#555,#f8f8f8);
     }
+}
+.isHidden {
+    opacity: 0;
 }
 </style>

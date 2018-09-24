@@ -7,7 +7,9 @@ const state = {
   data: [],
   shoppingCart: [],
   loginPage: false,
-  registeredPage: false
+  registeredPage: false,
+  isLogin: false,
+  aboutUser: [],
 }
 const getters = {
   getData(state) {
@@ -22,9 +24,16 @@ const getters = {
   getIsRegistered(state) {
     return state.registeredPage
   },
+  getUserInfo: (state) => (account) => {
+    return JSON.parse(localStorage.getItem(account))
+  },
   loginState(state) {
-    return JSON.parse(localStorage.getItem('userInfo'))
+    return state.isLogin
+  },
+  getWhichUser(state) {
+    return state.aboutUser
   }
+
 }
 const actions = {
   getApi(context, productInfo) {
@@ -69,12 +78,17 @@ const mutations = {
   changeRegisteredState(state) {
     state.registeredPage = !state.registeredPage
   },
-  registerUser(state, userInfo) {
+  registeredUser(state, userInfo) {
     let userArray = JSON.parse(localStorage.getItem('userInfo')) || []
     userArray.push(userInfo)
-    localStorage.setItem('userInfo', JSON.stringify(userArray))
+    localStorage.setItem(userInfo.account, JSON.stringify(userArray))
+  },
+  changeUser(state) {
+    state.isLogin = !state.isLogin
+  },
+  aboutUser(state, userInfo) {
+    state.aboutUser = userInfo
   }
-
 }
 export default new Vuex.Store({
   state,
