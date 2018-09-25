@@ -21,9 +21,7 @@
     <div class="">
       <div class="filterBar">
         <input type="text" v-model="text" @keyup.enter="searchProduct">
-        <router-link :to="`/Home/${text}`">
-          <button type="button">搜尋</button>
-        </router-link>
+        <button type="button" @click="searchProduct">搜尋</button>
       </div>
       <div class="hotSearchBar">
         <ul>
@@ -53,11 +51,20 @@ export default {
       text: ""
     }
   },
+  watch: {
+    '$route' (to, from) {
+      this.$store.commit('resetData')
+      this.$store.dispatch('getApi', {
+        product: this.text,
+        number: 1
+      })
+      this.text = ''
+      console.log('fuck')
+    }
+  },
   methods: {
     searchProduct: function() {
-      // this.$router.replace(`Home/${this.text}`)
-      // console.log(this.text)
-      // this.text = ""
+      this.$router.push(`/Home/${this.text}`)
     },
     goLogin: function() {
       this.$store.commit("changeLoginState")
