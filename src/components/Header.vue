@@ -48,23 +48,24 @@ export default {
   data() {
     return {
       hotSearch: ["adidas 後背包", "蘋果手機殼", "女生短袖", "牛仔長裙", "兒童牙刷", "小米手帶", "sony 手機殼", "居家收納", "正韓洋裝", "nike air max"],
-      text: ""
+      text: ''
     }
   },
   watch: {
     '$route' (to, from) {
-      this.$store.commit('resetData')
-      this.$store.dispatch('getApi', {
-        product: this.text,
-        number: 1
-      })
+      if (this.$store.getters.getData.length === 0) {
+        this.$store.dispatch('getApi', {
+          product: this.text,
+          number: 1
+        })
+      }
       this.text = ''
-      console.log('fuck')
     }
   },
   methods: {
     searchProduct: function() {
       this.$router.push(`/Home/${this.text}`)
+      this.$store.commit('resetData')
     },
     goLogin: function() {
       this.$store.commit("changeLoginState")
