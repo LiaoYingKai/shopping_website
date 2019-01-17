@@ -16,7 +16,7 @@
   </div>
   <div class="mallBar">
     <router-link :to="{ name: 'Home', params: {} }" class="logo">
-      FuckingKai
+      Dev Kai
     </router-link>
     <div class="">
       <div class="filterBar">
