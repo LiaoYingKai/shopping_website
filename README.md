@@ -8,6 +8,7 @@
 將商品加入購物車
 結帳
 
+## [demo website](https://liaoyingkai.github.io/shopping_website/dist/#/Home)
 
 ## Build Setup
 
